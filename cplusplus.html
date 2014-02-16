@@ -1,0 +1,46 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+.frame {position:absolute; top:0px; height:449px; width:99%;}
+.un {display:block;}
+.deux {display:none;}
+.trois {display:none;}
+</style>
+</head>
+<body height="449px">
+<div class="frame un">
+	<h1>Le TP "C++"</h1>
+	<p><p>
+	<p>Ordre de mission : développer 2 petits programmes en console. Et c'est noté !.</p>
+	
+</div>
+
+<div class="frame deux">
+	<img src="Diapositive3.png" height="449px" width="500px">
+</div>
+
+<div class="frame trois"> 
+	<img src="Diapositive4.png" height="449px" width="500px">
+</div>
+
+<script>
+$( document ).ready(function() {
+	
+	setTimeout(function() {
+		$('.deux').css('display', 'block');
+		
+		setTimeout(function() {
+		  $('.trois').css('display', 'block');
+		 		
+		 		setTimeout(function() {
+				  
+				  $('.quatre').css('display', 'block');
+				}, 5000);	
+		}, 5000);
+	}, 5000);
+})
+</script>
+
+</body>
+</html>

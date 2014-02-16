@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Canvas Test 2</title> 
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+.essai {position:absolute; top:50px; left:50px; height:500px; width:1100px; background-color:white; display:none;"}
+</style>
+<script type="text/javascript" src="event.js"></script>
+</head>
+<body style="background-color:#DAD3EF">
+<section>
+
+<div>
+<canvas id="canvas" width="1350" height="650">
+This text is displayed if your browser does not support HTML5 Canvas.
+</canvas>
+</div>
+
+<script type="text/javascript">
+var canvas;
+var ctx;
+var dx = 5;
+var dy = 5;
+var x = 610;
+var y = 5;
+var WIDTH = 1350;
+var HEIGHT = 650;
+
+var compteur = 1;
+
+var chaine = "x";
+
+var img = new Image();   // Crée un nouvel objet Image
+img.src = 'character.png'; // Définit le chemin vers sa source
+var back = new Image();
+back.src= 'background.png';
+
+function rect(x,y,w,h) {
+ctx.beginPath();
+ctx.rect(x,y,w,h);
+ctx.closePath();
+ctx.fill();
+ctx.stroke();
+}
+
+function clear() {
+ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+
+function init() {
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+return setInterval(draw, 10);
+}
+
+function doKeyDown(evt){
+switch (evt.keyCode) {
+case 38:  /* Up arrow was pressed */
+if (y - dy > 0){
+y -= dy;
+}
+break;
+case 40:  /* Down arrow was pressed */
+if (y + dy < HEIGHT){
+y += dy;
+}
+break;
+case 37:  /* Left arrow was pressed */
+if (x - dx > 0){
+x -= dx;
+}
+break;
+case 39:  /* Right arrow was pressed */
+if (x + dx < WIDTH){
+x += dx;
+}
+break;
+}
+}
+
+function draw() {
+clear();
+//ctx.fillStyle = "white";
+ctx.strokeStyle = "black";
+rect(0,0,WIDTH,HEIGHT);
+//ctx.fillStyle = "purple";
+
+ctx.drawImage(back, 0, 0);
+ctx.drawImage(img,x,y);
+console.log(x, ",", y);
+event_handler(x, y);
+}
+
+function event_handler(x, y) {
+	
+if (x==10 && y==10){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="maisonarduino.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>';
+			$('.essai').css('display', 'block');
+			compteur = 2;
+	}
+
+}
+
+if (x==1075 && y==580){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="admin.html" width="99%" height="500px" scrolling="no" seamless allowTransparency="true"></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==625 && y==460){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="tp_mindstorm.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==200 && y==435){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="tp_distributeur.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==340 && y==500){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="projettablesismique.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==1200 && y==445){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="cplusplus.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==620 && y==100){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="nao.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==1070 && y==25){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="sin.html" width="99%" height="500px" scrollbar="none" scrolling="no" ALLOWTRANSPARENCY="true" seamless></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==50 && y==265){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="codage.html" width="99%" height="500px" scrolling="no" seamless allowTransparency="true"></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if (x==1075 && y==145){
+	if (compteur==1){
+		document.getElementById('essai').innerHTML = '<iframe src="activites.html" width="99%" height="500px" scrolling="no" seamless allowTransparency="true"></iframe>';
+		$('.essai').css('display', 'block');
+		compteur = 2;
+		
+	}
+}
+
+if ((x!=10 || y!=10) && (x!=1075 || y!=580) && (x!=625 || y!=460) && (x!=1070 || y!=25) && (x!=50 || y!=265) && (x!=1075 || y!=145) && (x!=1200 || y!=445) && (x!=620 || y!=100) && (x!=200 || y!=435)){
+	compteur = 1;
+	$('.essai').css('display', 'none');
+	}
+}
+
+
+init();
+window.addEventListener('keydown',doKeyDown,true);
+
+</script>
+</section>
+
+<div class="essai" id="essai">
+<!--<iframe src="tp_distributeur.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>-->
+</div>
+</body>
+</html>

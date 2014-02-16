@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+.frame {position:absolute; top:0px; height:449px; width:99%;}
+.un {display:block;}
+.deux {display:none;}
+.trois {display:none;}
+
+</style>
+</head>
+<body height="449px">
+<div class="frame un">
+	<h1>Le TP "Distributeur"</h1>
+	<p><p>
+	<p>ce TP était réellement complet, mélangeant électronique et programmation</p>
+	
+</div>
+
+<div class="frame deux">
+	<img src="distributeur1.jpg" height="449px" width="500px">
+</div>
+
+<div class="frame trois"> 
+	<video id="video" src="video_distributeur.mp4"></video>
+</div>
+
+<script>
+$( document ).ready(function() {
+	alert('Lol');
+	setTimeout(function() {
+		$('.deux').css('display', 'block');
+		
+		setTimeout(function() {
+		  //alert('coucou tutu !');
+		  $('.trois').css('display', 'block');
+		  $("#video").get(0).play();
+		}, 5000);
+	}, 5000);
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Canvas Test 2</title> 
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+.essai {position:absolute; top:50px; left:50px; height:500px; width:1100px; background-color:white; display:none;"}
+</style>
+</head>
+<body>
+<section>
+
+<div>
+<canvas id="canvas" width="1350" height="650">
+This text is displayed if your browser does not support HTML5 Canvas.
+</canvas>
+</div>
+
+<script type="text/javascript">
+var canvas;
+var ctx;
+var dx = 5;
+var dy = 5;
+var x = 610;
+var y = 5;
+var WIDTH = 1350;
+var HEIGHT = 650;
+
+var compteur = 1;
+
+var chaine = "x";
+
+var img = new Image();   // Crée un nouvel objet Image
+img.src = 'character.png'; // Définit le chemin vers sa source
+var back = new Image();
+back.src= 'background.png';
+
+function rect(x,y,w,h) {
+ctx.beginPath();
+ctx.rect(x,y,w,h);
+ctx.closePath();
+ctx.fill();
+ctx.stroke();
+}
+
+function clear() {
+ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+
+function init() {
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+return setInterval(draw, 10);
+}
+
+function doKeyDown(evt){
+switch (evt.keyCode) {
+case 38:  /* Up arrow was pressed */
+if (y - dy > 0){
+y -= dy;
+}
+break;
+case 40:  /* Down arrow was pressed */
+if (y + dy < HEIGHT){
+y += dy;
+}
+break;
+case 37:  /* Left arrow was pressed */
+if (x - dx > 0){
+x -= dx;
+}
+break;
+case 39:  /* Right arrow was pressed */
+if (x + dx < WIDTH){
+x += dx;
+}
+break;
+}
+}
+
+function draw() {
+clear();
+//ctx.fillStyle = "white";
+ctx.strokeStyle = "black";
+rect(0,0,WIDTH,HEIGHT);
+//ctx.fillStyle = "purple";
+
+ctx.drawImage(back, 0, 0);
+ctx.drawImage(img,x,y);
+console.log(x, ",", y);
+event_handler(x, y);
+}
+
+function event_handler(x, y) {
+	
+if (x==10 && y==10){
+	console.log("event");
+	chaine = "tp_distributeur";
+	show_div(chaine);
+	console.log(compteur);
+	}
+if (x!=10){
+	clear_div();
+	if (compteur==2){compteur=1;}
+	}
+if (x==1075 && y==580){
+	console.log("event");
+	chaine = "admin";
+	show_div(chaine);
+	console.log(compteur);
+	}
+if (x!=1075){
+	clear_div();
+	if (compteur==3){compteur=1;}
+	}
+}
+
+function show_div() {
+	if(compteur == 1){
+		console.log('adding element');
+		document.getElementById('essai').innerHTML = '<iframe src="' + chaine + '.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>'
+		$('.essai').css('display', 'block');
+		
+
+		if (chaine = "admin"){compteur=3;}
+		if (chaine = "tp_distributeur"){compteur=2;}
+
+		console.log(compteur);
+	}
+	
+}
+
+function clear_div() {
+	$('.essai').css('display', 'none');
+}
+
+init();
+window.addEventListener('keydown',doKeyDown,true);
+</script>
+</section>
+
+<div class="essai" id="essai">
+<!--<iframe src="tp_distributeur.html" width="99%" height="500px" scrollbar="none" scrolling="no" seamless></iframe>-->
+</div>
+</body>
+</html>
